@@ -1,0 +1,11 @@
+How to install this script;
+
+~ launch sql script to insert new mail type (APPROVAL = 4)
+~ update all mail where tickets _status=-1, set mail_outbox.mail_type=4 where email is approval
+~ update order, reallocation and all approval files, set mail_type=4 where sending email approval
+~ put all of this script to server WEB_ROOT/crontab/, don't forget to change path script of receipt reminder
+~ if you follow it the, folder structure will be like this :
+    - /WEB_ROOT
+        - /crontab
+            - /PfizerResendApproval
+            - /PfizerReceiptReminder
