@@ -8,6 +8,7 @@ class Log {
     
     private $logPath = null;
     private $logFile = null;
+    private $logDir = null;
     
     /**
      * Method to set Log Path
@@ -42,6 +43,25 @@ class Log {
     }
     
     /**
+     * Method to set Log Directory, if not exist attempt to create it
+     * @param string $dirName Directory Name under log path
+     */
+    public function setLogDir($dirName) {
+        $this->logDir = $dirName;
+        if (!is_dir($this->getLogPath() .'/'. $this->getLogDir())) {
+            mkdir($this->getLogPath() .'/'. $this->getLogDir());
+        }
+    }
+    
+    /**
+     * Method to get Log Directory
+     * @return string Directory Name
+     */
+    public function getLogDir() {
+        return $this->logDir;
+    }
+
+    /**
      * Method to write log
      * @param string $message
      * @param string $mode (r, r+, w, w+, a, a+, x, x+, c, c+) more info see php manual fopen() mode
@@ -49,7 +69,8 @@ class Log {
      */
     public function writeLog($message, $mode) {
         if ($message !== '') {
-            $fopen = fopen($this->getLogPath() .'/'. $this->getLogFile(), $mode);
+            $log_path = ($this->getLogDir()) ? $this->getLogPath() .'/'. $this->getLogDir() : $this->getLogPath();
+            $fopen = fopen($log_path .'/'. $this->getLogFile(), $mode);
             if (fwrite($fopen, $message)) {
                 return true;
             }
