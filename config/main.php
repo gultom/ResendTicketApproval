@@ -1,27 +1,26 @@
 <?php
 $is_production = FALSE;
-$var_uri = '__BASE_URI__';
-$var_url = '__BASE_URL__';
 
 if ($is_production) {
-    define($var_uri, '/home/pfizer.jsmservice.co.id/public_html/crontab/ResendApproval');
-    define($var_url, 'http://pfizer.jsmservice.co.id/public_html/crontab/ResendApproval');
+    define('__BASE_URI__', '/home/pfizer.jsmservice.co.id/public_html/crontab/ResendTicketApproval');
+    define('__BASE_URL__', 'http://pfizer.jsmservice.co.id/public_html/crontab/ResendTicketApproval');
 }
 else {
     if (PHP_OS === 'Linux') {
-        define($var_uri, '/media/data/Project/webapps/cli/ResendApproval');
+        # Office PC Path
+        define('__BASE_URI__', '/media/data/Project/webapps/cli/ResendTicketApproval');
     }
     else {
         # Office PC Path
-        # define($var_uri, 'D:/Project/webapps/cli/ResendApproval');
+        define('__BASE_URI__', 'D:/Project/webapps/cli/ResendTicketApproval');
         # Home PC Path
-        define($var_uri, 'D:/root/My Work/webapps/cli/ResendApproval');
+        # define('__BASE_URI__', 'D:/root/My Work/webapps/cli/ResendTicketApproval');
     }
-    define($var_url, 'http://localhost/cli/ResendApproval');
+    define('__BASE_URL__', 'http://localhost/cli/ResendTicketApproval');
 }
-define('__SRC_URI_PATH__', $var_uri .'/src');
+define('__SRC_URI_PATH__', __BASE_URI__ .'/src');
 define('__CLASS_PATH__', __SRC_URI_PATH__ .'/class');
-define('__LOG_URI_PATH__', $var_uri .'/logs');
+define('__LOG_URI_PATH__', __BASE_URI__ .'/logs');
 
 date_default_timezone_set('Asia/Jakarta');
 
