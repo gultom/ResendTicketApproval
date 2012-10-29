@@ -31,7 +31,7 @@ abstract class MySQL implements Database {
                 self::$_port = 3306;
                 self::$_user = 'root';
                 self::$_pass = 'marlboro';
-                self::$_db = 'ts_equity';
+                self::$_db = 'pfizer_cms';
                 break;
             
             case 'beta':
@@ -43,11 +43,11 @@ abstract class MySQL implements Database {
                 break;
             
             case 'prod':
-                self::$_host = '';
+                self::$_host = 'localhost';
                 self::$_port = 3306;
-                self::$_user = '';
-                self::$_pass = '';
-                self::$_db = '';
+                self::$_user = 'pfizer_cms_am';
+                self::$_pass = '456jaring123';
+                self::$_db = 'pfizer_cms';
                 break;
             
             default:
@@ -55,7 +55,7 @@ abstract class MySQL implements Database {
                 self::$_port = 3306;
                 self::$_user = 'root';
                 self::$_pass = 'marlboro';
-                self::$_db = 'ts_lig';
+                self::$_db = 'pfizer_cms';
                 break;
         }
     }
