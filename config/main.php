@@ -36,7 +36,7 @@ function myErrorHandler($e_num, $e_msg, $e_file, $e_line, $e_vars) {
         $message = "Error found in file $e_file at line $e_line {NL}";
         $message .= "DateTime : ". date('d M Y, H:i:s') ."{NL}";
         $message .= "Messages :{NL}$e_msg{NL}";
-        $message .= "Query :{NL}". MySQL::getQuery(true) ."{NL}";
+        $message .= "Query :{NL}". MySQL::getQuery(FALSE) ."{NL}";
         
         // show errors
         if ($is_production) {
