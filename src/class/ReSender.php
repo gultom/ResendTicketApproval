@@ -13,7 +13,7 @@ class ReSender {
      * @param Ticket $ticket
      */
     public function resendMail(Ticket $ticket, Mail $mail) {
-        $tickets = $ticket->getPendingTickets($this->limiDay);
+        $tickets = $ticket->getPendingTickets($this->limitDay);
         if (count($tickets)) {
             $Log = new Log();
             foreach ($tickets as $key => $value) {
@@ -22,8 +22,9 @@ class ReSender {
                 if ($mail->resend()) {
                     $logMsg = "Re-Sending approval Email ID ". $mail->getId() ." for Ticket #". $value['TicketNo'] ." [". date('d M Y, H:i:s') ."]\n";
                     $Log->setLogPath(__LOG_URI_PATH__);
+                    $Log->setLogDir(date('Y-m'));
                     $Log->setLogFile(date('ymd') .'.log');
-                    @$Log->writeLog($logMsg, 'x+');
+                    @$Log->writeLog($logMsg, 'a+');
                 }
             }
         }
